@@ -10,7 +10,7 @@ import Register from "../pages/Register";
 
 //把原来的路由的push的方法先保存一份
 let originPush = VueRouter.prototype.push;
-
+let originReplace = VueRouter.prototype.replace;
 //重写push方法
 //第一个参数传递push原来的参数
 VueRouter.prototype.push = function (location,resolve,reject) {
@@ -22,6 +22,18 @@ VueRouter.prototype.push = function (location,resolve,reject) {
     }
     else{
         originPush.call(this,location,()=>{},()=>{})
+    }
+
+};
+VueRouter.prototype.replace = function (location,resolve,reject) {
+    console.log(this);
+    if (resolve && reject) {
+        //call||apply区别：可以串改函数的上下文
+        //不同点：call与apply传递参数call逗号隔开，apply方法执行，传递数组
+        originReplace.call(this,location,resolve,reject)
+    }
+    else{
+        originReplace.call(this,location,()=>{},()=>{})
     }
 
 };
