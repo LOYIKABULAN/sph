@@ -1,19 +1,23 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <top-header-vue></top-header-vue>
+    <router-view ></router-view>
+    <!-- <bottom-footer-vue v-show="$route.path=='/home' || $route.path=='/'"></bottom-footer-vue> -->
+    <bottom-footer-vue v-show="$route.meta.footerShow"></bottom-footer-vue>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import BottomFooterVue from "./components/BottomFooter/BottomFooter.vue";
+import TopHeaderVue from "./components/TopHeader/TopHeader.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    TopHeaderVue,
+    BottomFooterVue,
+  },
+};
 </script>
 
 <style>
